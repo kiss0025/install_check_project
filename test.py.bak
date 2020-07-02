@@ -1,0 +1,38 @@
+import sys
+from PyQt5.QtWidgets import *
+from PyQt5 import uic
+
+
+form_class = uic.loadUiType("C:\\Users\\KJH\\Desktop\\PtQT Tutorial\\2. Notepad\\notepad.ui")[0]
+
+class windowClass(QMainWindow, form_class):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+        self.action_open.triggered.connect(self.openFunction)
+        self.action_save.triggered.connect(self.saveFunction)
+
+    def openFunction(self):
+        fname = QFileDialog.getOpenFileName(self)
+        with open(fname[0], encoding='UTF8') as f:
+            data = f.read()
+        self.plainTextEdit.setPlainText(data)
+
+        print("open !! {}".format(fname[0]))
+        
+    def saveFunction(self):
+        fname = QFileDialog.getSaveFileName(self)
+        data = self.plainTextEdit.toPlainText()
+
+        with open(fname[0], 'w', encoding='UTF8') as f:
+            f.write(data)
+
+        print("save !! {}".format(fname[0]))
+        
+
+app = QApplication(sys.argv)
+mainWindow = windowClass()
+mainWindow.show()
+app.exec_()
+
