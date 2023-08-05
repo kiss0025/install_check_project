@@ -38,8 +38,9 @@
             .catch((error) => {
               console.error("Error fetching voltage:", error);
             });
-        }, 500); // Refresh data every 3 seconds
+        }, 3000);
       }
+
       window.onload = fetchData;
     </script>
   </head>
