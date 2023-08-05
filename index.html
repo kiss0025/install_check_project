@@ -6,20 +6,33 @@
   <body>
     <h1>WebSocket Client</h1>
     <p id="temperature">Temperature: N/A</p>
+    <p id="humidity">Humidity: N/A</p>
+    <p id="voltage">Voltage: N/A</p>
 
     <script>
       const webSocket = new WebSocket("ws://172.30.1.76:81/"); // Replace with your ESP8266's IP address
 
       webSocket.onopen = function (event) {
         console.log("WebSocket connection opened.");
-        webSocket.send("get_temperature");
+        webSocket.send("get_data"); // Request data from server
       };
 
       webSocket.onmessage = function (event) {
+        console.log("Received message:", event.data);
         const data = JSON.parse(event.data);
+        console.log("Parsed data:", data);
+
         if (data.temperature) {
           document.getElementById("temperature").textContent =
             "Temperature: " + data.temperature + " °C";
+        }
+        if (data.humidity) {
+          document.getElementById("humidity").textContent =
+            "Humidity: " + data.humidity + " %";
+        }
+        if (data.voltage) {
+          document.getElementById("voltage").textContent =
+            "Voltage: " + data.voltage + " V";
         }
       };
 
