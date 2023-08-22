@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      #jb-container {
+        width: 940px;
+        height: 100%;
+        margin: 10px auto;
+        padding: 20px;
+        border: 1px solid #f90202;
+      }
+      #jb-header {
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content-left {
+        width: 49%;
+        height: 100%;
+        margin-bottom: 20px;
+        float: left;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content-right {
+        width: 49%;
+        height: 100%;
+        margin-bottom: 20px;
+        float: right;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-footer {
+        clear: both;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      @media (max-width: 481px) {
+        #jb-container {
+          width: 100%;
+        }
+        #jb-content-left {
+          width: 100%;
+        }
+        #jb-content-right {
+          width: 100%;
+        }
+        #jb-footer {
+          clear: both;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="jb-container">
+      <div id="jb-header">
+        <div style="text-align: center">
+          <span style="color: blue; font-size: 30px"
+            >사상통신분소 시험장치 v08.22a
+            <button id="btn" onclick="location.href=window.location.href">
+              REFRESH
+            </button>
+            <!-- <button id="btn" onclick ="location.href='visualizer.html'">VOICE ANALYSIS</button> -->
+            <!--현재 페이지에서 다른 페이지로 이동하기
+                    onclick ="location.href='index.html'"
+                    새 페이지에서 다른 페이지 열기
+                    onclick ="window.open('index.html')"
+                    현재 페이지 새로고침
+                    onclick ="location.reload();"
+                    뒤로 가기
+                    onclick ="history.back();"
+                    뒤로 1번 가기
+                    onclick ="history.go(-1);"-->
+            <iframe
+              src="time.html"
+              scrolling="no"
+              frameborder="0"
+              width="150"
+              height="28"
+              >></iframe
+            ></span
+          ><br />
+        </div>
+      </div>
+      <div id="jb-content-left">
+        <h2>측정 전압</h2>
+        <iframe
+          src="mea_volt.html"
+          scrolling="no"
+          frameborder="0"
+          width="450px"
+          height="500px"
+        >
+        </iframe>
+      </div>
+      <div id="jb-content-right">
+        <h2>음성 분석</h2>
+        <iframe
+          src="visualizer.html"
+          scrolling="no"
+          frameborder="0"
+          width="450px"
+          height="500px"
+        >
+        </iframe>
+      </div>
+      <div id="jb-footer">
+        <p>Copyright</p>
+      </div>
+    </div>
+  </body>
+</html>

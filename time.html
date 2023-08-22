@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            html,
+            body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            background-color: white;
+            }           
+        </style>
+    </head>
+    <body>
+        
+        <div style="text-align: center;">     
+            <span id="apm" style="color:gray; font-size: 15px; vertical-align: middle;"  >ampm</span>
+            <span id="clock" style="color:gray; font-size: 25px; vertical-align: middle;">clock</span>
+        </div>  
+        
+        <script>
+            var Target = document.getElementById("clock");
+            var Target_apm = document.getElementById("apm");
+            function clock() {
+                var time = new Date();
+                var hours = time.getHours();
+                var minutes = time.getMinutes();
+                var seconds = time.getSeconds();
+                var AmPm ="AM";
+                if(hours > 12){   
+                    var AmPm ="PM";
+                    hours %= 12;
+                }
+                Target.innerText = 
+                `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+                Target_apm.innerText = `${AmPm}`;
+            }
+            clock();
+            setInterval(clock, 1000); // 1초마다 실행
+        </script>
+       
+    </body>
+</html>

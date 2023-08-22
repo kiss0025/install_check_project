@@ -115,6 +115,20 @@ button span {
   background-color: #cc5338;
 }
 
+#btn {
+  border: 1px solid blue;
+  background-color: rgba(0, 0, 0, 0);
+  color: blue;
+  width: 150px;
+  padding: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-right: -4px;
+  height: 40px;
+}
+
 path {
   stroke-linecap: square;
   stroke: white;
