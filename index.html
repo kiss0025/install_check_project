@@ -2,9 +2,19 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <title>CSS</title>
+    <title>사상통신분소 시험장치</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
     <style>
+      :root {
+        font-size: 30px;
+      }
+      /* 모든기기공통 CSS */
+      body {
+        background-color: orange;
+      }
+
       #jb-container {
         width: 940px;
         height: 100%;
@@ -13,9 +23,9 @@
         border: 1px solid #f90202;
       }
       #jb-header {
-        padding: 20px;
         margin-bottom: 20px;
         border: 1px solid #bcbcbc;
+        display: flex;
       }
       #jb-content-left {
         width: 49%;
@@ -33,12 +43,37 @@
       }
       #jb-footer {
         clear: both;
-        padding: 20px;
+        padding: 2px;
         border: 1px solid #bcbcbc;
       }
-      @media (max-width: 481px) {
+
+      /* desktop 규격 */
+      @media screen and (min-width: 1024px) {
+        body {
+          background-color: lightskyblue;
+        }
+      }
+
+      /* tablet 규격 */
+      @media screen and (max-width: 1023px) {
+        body {
+          background-color: beige;
+        }
+      }
+
+      /* mobile 규격 */
+      @media screen and (max-width: 540px) {
+        body {
+          background-color: beige;
+        }
+
         #jb-container {
           width: 100%;
+        }
+        #jb-header {
+          width: 100%;
+          font-size: 0.8rem;
+          display: block;
         }
         #jb-content-left {
           width: 100%;
@@ -47,6 +82,7 @@
           width: 100%;
         }
         #jb-footer {
+          font-size: 0.5rem;
           clear: both;
         }
       }
@@ -55,42 +91,40 @@
   <body>
     <div id="jb-container">
       <div id="jb-header">
-        <div style="text-align: center">
-          <span style="color: blue; font-size: 30px"
-            >사상통신분소 시험장치 v08.22a
-            <button id="btn" onclick="location.href=window.location.href">
-              REFRESH
-            </button>
-            <!-- <button id="btn" onclick ="location.href='visualizer.html'">VOICE ANALYSIS</button> -->
-            <!--현재 페이지에서 다른 페이지로 이동하기
-                    onclick ="location.href='index.html'"
-                    새 페이지에서 다른 페이지 열기
-                    onclick ="window.open('index.html')"
-                    현재 페이지 새로고침
-                    onclick ="location.reload();"
-                    뒤로 가기
-                    onclick ="history.back();"
-                    뒤로 1번 가기
-                    onclick ="history.go(-1);"-->
-            <iframe
+        <div style="text-align: center; vertical-align: middle">
+          <span style="color: rgb(3, 3, 3)">
+            사상통신분소 시험장치 v08.25a</span
+          >
+        </div>
+        <div style="text-align: center; vertical-align: middle">
+          <span
+            ><iframe
               src="time.html"
               scrolling="no"
               frameborder="0"
-              width="150"
-              height="28"
-              >></iframe
-            ></span
-          ><br />
+              width="100%"
+              height="35px"
+            >
+            </iframe
+          ></span>
+        </div>
+        <div style="text-align: right; vertical-align: middle">
+          <span id="headTempDisplay" style="color: gray; font-size: 12px"
+            >온도 습도</span
+          >
+          <br />
         </div>
       </div>
       <div id="jb-content-left">
         <h2>측정 전압</h2>
         <iframe
+          id="iframe_left"
+          name="iframe_left"
           src="mea_volt.html"
           scrolling="no"
           frameborder="0"
           width="450px"
-          height="500px"
+          height="300px"
         >
         </iframe>
       </div>
@@ -101,7 +135,7 @@
           scrolling="no"
           frameborder="0"
           width="450px"
-          height="500px"
+          height="300px"
         >
         </iframe>
       </div>
@@ -109,5 +143,43 @@
         <p>Copyright</p>
       </div>
     </div>
+
+    <!-- <div style="text-align: center;">     
+      <span id="apm" style="color:gray; font-size: 15px; vertical-align: middle;"  >ampm</span>
+      <span id="clock" style="color:gray; font-size: 25px; vertical-align: middle;">clock</span>
+    </div>   -->
+
+    <script type="text/javascript">
+      function getTempData() {
+        var getvalTemp = $("#iframe_left").contents().find(".tempData").html();
+        $("#headTempDisplay").text(getvalTemp); // Set the text of the span element
+        var getvalVolt = $("#iframe_left").contents().find(".voltData").html();
+        console.log(getvalVolt);
+      }
+      getTempData();
+      setInterval(getTempData, 1000); // 1초마다 실행
+    </script>
+
+    <!-- <script>
+      var Target = document.getElementById("clock");
+      var Target_apm = document.getElementById("apm");
+      function clock() {
+        var time = new Date();
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+        var AmPm = "AM";
+        if (hours > 12) {
+          var AmPm = "PM";
+          hours %= 12;
+        }
+        Target.innerText = `${hours < 10 ? `0${hours}` : hours}:${
+          minutes < 10 ? `0${minutes}` : minutes
+        }:${seconds < 10 ? `0${seconds}` : seconds}`;
+        Target_apm.innerText = `${AmPm}`;
+      }
+      clock();
+      setInterval(clock, 1000); // 1초마다 실행
+    </script> -->
   </body>
 </html>
