@@ -3,49 +3,93 @@
   <head>
     <meta charset="utf-8" />
     <title>사상통신분소 시험장치</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-    />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
     <style>
-      .bg {
-        border: 1px solid red;
-        background-image: url(../img/a_1.png);
-        background-repeat: no-repeat;
-        background-size: cover;
+      :root {
+        font-size: 30px;
       }
+      /* 모든기기공통 CSS */
+      body {
+        background-color: orange;
+      }
+
+      #jb-container {
+        width: 940px;
+        height: 100%;
+        margin: 10px auto;
+        padding: 20px;
+        border: 1px solid #f90202;
+      }
+      #jb-header {
+        margin-bottom: 20px;
+        border: 1px solid #bcbcbc;
+        display: flex;
+      }
+      #jb-content-left {
+        width: 49%;
+        height: 100%;
+        margin-bottom: 20px;
+        float: left;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content-right {
+        width: 49%;
+        height: 100%;
+        margin-bottom: 20px;
+        float: right;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-footer {
+        clear: both;
+        padding: 2px;
+        border: 1px solid #bcbcbc;
+      }
+
+      /* desktop 규격 */
+      @media screen and (min-width: 1024px) {
+        body {
+          background-color: lightskyblue;
+        }
+      }
+
+      /* tablet 규격 */
+      @media screen and (max-width: 1023px) {
+        body {
+          background-color: beige;
+        }
+      }
+
       /* mobile 규격 */
       @media screen and (max-width: 540px) {
-        .button-container {
-          position: absolute;
-          width: 100%;
-          text-align: center;
-          top: 50%;
+        body {
+          background-color: beige;
         }
-        .test-start-button {
-          height: 100%;
-          width: 40%;
-          font-size: 27px;
-          background-color: #b00202;
+
+        #jb-container {
+          width: 100%;
+        }
+        #jb-header {
+          width: 100%;
+          font-size: 0.8rem;
+          display: block;
+        }
+        #jb-content-left {
+          width: 100%;
+        }
+        #jb-content-right {
+          width: 100%;
+        }
+        #jb-footer {
+          font-size: 0.5rem;
+          clear: both;
         }
       }
     </style>
   </head>
-  <body class="bg">
-    <div class="button-container">
-      <button
-        id="button"
-        class="test-start-button"
-        onclick="location.href='index_main.html'"
-      >
-        <span class="fa fa-play"></span> START
-      </button>
-    </div>
-
-    <!-- <div id="jb-container">
+  <body>
+    <div id="jb-container">
       <div id="jb-header">
         <div style="text-align: center; vertical-align: middle">
           <span style="color: rgb(3, 3, 3)">
@@ -98,14 +142,14 @@
       <div id="jb-footer">
         <p>Copyright</p>
       </div>
-    </div> -->
+    </div>
 
     <!-- <div style="text-align: center;">     
       <span id="apm" style="color:gray; font-size: 15px; vertical-align: middle;"  >ampm</span>
       <span id="clock" style="color:gray; font-size: 25px; vertical-align: middle;">clock</span>
     </div>   -->
 
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
       function getTempData() {
         var getvalTemp = $("#iframe_left").contents().find(".tempData").html();
         $("#headTempDisplay").text(getvalTemp); // Set the text of the span element
@@ -114,7 +158,7 @@
       }
       getTempData();
       setInterval(getTempData, 1000); // 1초마다 실행
-    </script> -->
+    </script>
 
     <!-- <script>
       var Target = document.getElementById("clock");

@@ -79,6 +79,12 @@ button span {
   float: left;
 }
 
+.test-start-button {
+  height: 50%;
+  width: 30%;
+  font-size: 60px;
+  background-color: #b00202;
+}
 .ok-button {
   height: 50px;
   width: 100px;
