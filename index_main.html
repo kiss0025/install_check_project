@@ -50,21 +50,21 @@
       /* desktop 규격 */
       @media screen and (min-width: 1024px) {
         body {
-          background-color: lightskyblue;
+          background-color: black;
         }
       }
 
       /* tablet 규격 */
       @media screen and (max-width: 1023px) {
         body {
-          background-color: beige;
+          background-color: black;
         }
       }
 
       /* mobile 규격 */
       @media screen and (max-width: 540px) {
         body {
-          background-color: beige;
+          background-color: black;
         }
 
         #jb-container {
@@ -92,9 +92,7 @@
     <div id="jb-container">
       <div id="jb-header">
         <div style="text-align: center; vertical-align: middle">
-          <span style="color: rgb(3, 3, 3)">
-            사상통신분소 시험장치 v08.25a</span
-          >
+          <span style="color: yellow"> 사상통신분소 시험장치 v08.31b</span>
         </div>
         <div style="text-align: center; vertical-align: middle">
           <span
@@ -109,14 +107,14 @@
           ></span>
         </div>
         <div style="text-align: right; vertical-align: middle">
-          <span id="headTempDisplay" style="color: gray; font-size: 12px"
+          <span id="headTempDisplay" style="color: white; font-size: 12px"
             >온도 습도</span
           >
           <br />
         </div>
       </div>
       <div id="jb-content-left">
-        <h2>측정 전압</h2>
+        <span style="color: white; font-size: 24px">전압 측정</span>
         <iframe
           id="iframe_left"
           name="iframe_left"
@@ -129,7 +127,7 @@
         </iframe>
       </div>
       <div id="jb-content-right">
-        <h2>음성 분석</h2>
+        <span style="color: white; font-size: 24px">음성 분석</span>
         <iframe
           src="visualizer.html"
           scrolling="no"
