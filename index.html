@@ -11,25 +11,68 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      .bg {
-        background-image: url(a1.jpg);
-        background-repeat: repeat;
-        background-size: cover;
-        background-position-y: 0;
-        animation: grow 25s linear infinite;
+      body {
+        /* font: 400 1em/1.5 "Neuton"; */
+        background: #090d00;
+        color: rgba(255, 255, 255, 0.25);
+        text-align: center;
+        margin: 0;
       }
+      p {
+        text-transform: uppercase;
+        letter-spacing: 0.6em;
+        display: inline-block;
+        border: 4px double rgba(255, 255, 255, 0.25);
+        border-width: 4px 0;
+        padding: 1.5em 1em;
+        position: absolute;
+        top: 18%;
+        left: 50%;
+        width: 40em;
+        margin: 0 0 0 -20em;
+      }
+      p span {
+        font: 700 3em/1 "Oswald", sans-serif;
+        letter-spacing: 0;
+        padding: 0.251em 0 0.325em;
+        display: inline-block;
+        margin: 0 auto;
+        text-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
+        /* Clip Background Image */
+        background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png)
+          repeat-y;
+        -webkit-background-clip: text;
+        background-clip: text;
+        /* Animate Background Image */
+        -webkit-text-fill-color: transparent;
+        -webkit-animation: aitf 80s linear infinite;
+        /* Activate hardware acceleration for smoother animations */
+        -webkit-transform: translate3d(0, 0, 0);
+        -webkit-backface-visibility: hidden;
+      }
+
+      /* Animate Background Image */
+      @-webkit-keyframes aitf {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
       button {
         margin: 10px;
       }
       .custom-btn {
-        width: 160px;
-        height: 50px;
+        width: 100px;
+        height: 35px;
         color: #fff;
         border-radius: 5px;
-        padding: 10px 25px;
+        padding: 5px 15px;
         font-family: "Lato", sans-serif;
         font-weight: 500;
-        font-size: 27px;
+        font-size: 20px;
         background: transparent;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -65,7 +108,7 @@
         width: 30px;
         height: 100%;
         background-color: #fff;
-        animation: shiny-btn1 3s ease-in-out infinite;
+        animation: shiny-btn1 2s ease-in-out infinite;
       }
       .btn-11:hover {
         opacity: 0.7;
@@ -96,136 +139,33 @@
         }
       }
 
-      /* mobile 규격 */
+      /* mobile 규격
       @media screen and (max-width: 540px) {
         .button-container {
           position: absolute;
           width: 100%;
           text-align: center;
-          top: 50%;
         }
-        .test-start-button {
-          height: 100%;
-          width: 40%;
-          font-size: 27px;
-          background-color: #b00202;
-        }
-      }
-      @keyframes grow {
-        0% {
-          background-size: 100% auto;
-        }
-        50% {
-          background-size: 140% auto;
-        }
-        100% {
-          background-size: 100% auto;
-        }
-      }
+      } */
     </style>
   </head>
-  <body class="bg">
+  <body>
+    <p>
+      2023년 업무개선과제
+      <span
+        >편의시설통화설비<br />
+        분소 시험장치</span
+      ><br />
+      &mdash; 사상통신분소 &mdash;
+    </p>
     <div class="button-container">
       <button
         id="button"
         class="custom-btn btn-11"
         onclick="location.href='index_main.html'"
       >
-        <span class="fa fa-play"></span> START
+        START
       </button>
     </div>
-
-    <!-- <div id="jb-container">
-      <div id="jb-header">
-        <div style="text-align: center; vertical-align: middle">
-          <span style="color: rgb(3, 3, 3)">
-            사상통신분소 시험장치 v08.25a</span
-          >
-        </div>
-        <div style="text-align: center; vertical-align: middle">
-          <span
-            ><iframe
-              src="time.html"
-              scrolling="no"
-              frameborder="0"
-              width="100%"
-              height="35px"
-            >
-            </iframe
-          ></span>
-        </div>
-        <div style="text-align: right; vertical-align: middle">
-          <span id="headTempDisplay" style="color: gray; font-size: 12px"
-            >온도 습도</span
-          >
-          <br />
-        </div>
-      </div>
-      <div id="jb-content-left">
-        <h2>측정 전압</h2>
-        <iframe
-          id="iframe_left"
-          name="iframe_left"
-          src="mea_volt.html"
-          scrolling="no"
-          frameborder="0"
-          width="450px"
-          height="300px"
-        >
-        </iframe>
-      </div>
-      <div id="jb-content-right">
-        <h2>음성 분석</h2>
-        <iframe
-          src="visualizer.html"
-          scrolling="no"
-          frameborder="0"
-          width="450px"
-          height="300px"
-        >
-        </iframe>
-      </div>
-      <div id="jb-footer">
-        <p>Copyright</p>
-      </div>
-    </div> -->
-
-    <!-- <div style="text-align: center;">     
-      <span id="apm" style="color:gray; font-size: 15px; vertical-align: middle;"  >ampm</span>
-      <span id="clock" style="color:gray; font-size: 25px; vertical-align: middle;">clock</span>
-    </div>   -->
-
-    <!-- <script type="text/javascript">
-      function getTempData() {
-        var getvalTemp = $("#iframe_left").contents().find(".tempData").html();
-        $("#headTempDisplay").text(getvalTemp); // Set the text of the span element
-        var getvalVolt = $("#iframe_left").contents().find(".voltData").html();
-        console.log(getvalVolt);
-      }
-      getTempData();
-      setInterval(getTempData, 1000); // 1초마다 실행
-    </script> -->
-
-    <!-- <script>
-      var Target = document.getElementById("clock");
-      var Target_apm = document.getElementById("apm");
-      function clock() {
-        var time = new Date();
-        var hours = time.getHours();
-        var minutes = time.getMinutes();
-        var seconds = time.getSeconds();
-        var AmPm = "AM";
-        if (hours > 12) {
-          var AmPm = "PM";
-          hours %= 12;
-        }
-        Target.innerText = `${hours < 10 ? `0${hours}` : hours}:${
-          minutes < 10 ? `0${minutes}` : minutes
-        }:${seconds < 10 ? `0${seconds}` : seconds}`;
-        Target_apm.innerText = `${AmPm}`;
-      }
-      clock();
-      setInterval(clock, 1000); // 1초마다 실행
-    </script> -->
   </body>
 </html>
