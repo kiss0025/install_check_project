@@ -2,6 +2,7 @@
 <html lang="ko">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="css/style.css">
         <script src="https://www.gstatic.com/firebasejs/7.2/firebase.js"></script>
         <!-- Firebase SDK -->
         <script src="https://www.gstatic.com/firebasejs/7.2/firebase-app.js"></script> 
@@ -30,6 +31,14 @@
             height: 100%;
             margin: 0;
             overflow: visible;
+            }
+            .snrVal{
+            position: fixed;
+            bottom: 10%; /* 페이지 아래에서 50% 위치에 배치 */
+            left: 0; /* 왼쪽 가장자리에 배치 (가운데 정렬을 위해) */
+            right: 0; /* 오른쪽 가장자리에 배치 (가운데 정렬을 위해) */
+            transform: translateY(50%); /* 수직 방향으로 50%만큼 이동하여 중앙에 정렬 */
+            text-align: center; /* 텍스트를 가운데 정렬 */
             }
             #btn{
             border: 1px solid blue;
@@ -102,18 +111,22 @@
     </head>
     <body>
         
-        <div class="overflow" style="text-align: right;">
-            <span id="object1" class="tempData" style="color:black; font-size: 15px;">fetching....</span>
+        <div class="overflow" style="text-align: right;"> // 온습도 부분 안보이게 처리함.
+            <span id="object1" class="tempData" style="color:black; font-size: 15px;">Loading....</span>
             </span>           
         </div>
         <div style="text-align: center;">
-            <span id="object2" class="voltData" style="color:red; font-size: 36px;">fetching....</span>
+            <span id="object2" class="voltData" style="color:red; font-size: 36px;">Loading....</span>
         </div>
         <div class="volt-chart" style="text-align: right;">
             <canvas id="line1"></canvas>
         </div>
+        <div class="snrVal">
+            <span id="object3" class="snrData" style="color:orangered; font-size: 36px;">SNR Loading....</span>
+        </div>
         
         <script>
+            Noise_power = 0.02;
             n=0;
             // Initialize Firebase 
             var firebaseConfig = {
@@ -130,7 +143,8 @@
             // firebase에서 읽기
             var demo = document.getElementById("demo");            
             var preObject1 = document.getElementById("object1"); //온습도
-            var preObject2 = document.getElementById("object2"); //전압
+            var preObject2 = document.getElementById("object2"); //전압            
+            var preObject3 = document.getElementById("object3"); //SNR
             var dbRef = firebase.database().ref().child("esp8266");
             // Initialize arrays to hold data
             const timestamps = [];
@@ -143,23 +157,33 @@
                 const temperature = data.temperature.toFixed(1); // Display temperature with one decimal place
                 const humidity = data.humidity.toFixed(0); // Display humidity with one decimal place
                 const voltage = data.voltage.toFixed(2); // Display voltage with one decimal place
+
+                /* SNR (dB) = 10 * Log (Signal_Power / Noise_Power) 
+                만일, 비교하는 신호와 잡음의 단위가 Power 가 아니라 전압이라면
+                10 대신 20을 곱. 그 이유는 단위 저항에 대한 전력이 전압의 제곱으로
+                표현 되기 때문 */
+                const snr = 20 * Math.log10(voltage / Noise_power);             
                 
                 // Create formatted strings for display
                 const formattedTemperature = `온도: ${temperature}°C`;
                 const formattedHumidity = `습도: ${humidity}%`;
-                const formattedVoltage = `Voltage: ${voltage} V`;
-                
+                const formattedVoltage = `Voltage : ${voltage} V`;
+                const formattedSNR = `SNR : ${snr.toFixed(2)} dB`;
+
                 // Combine all formatted data into a single string with line breaks
                 //const formattedData = `${formattedTemperature}\n${formattedHumidity}\n${formattedVoltage}`;
                 const formattedData1 = `${formattedTemperature} ${formattedHumidity}`;
                 const formattedData2 = `${formattedVoltage}`;
+                const formattedData3 = `${formattedSNR}`;
                 
                 // Replace newline characters with <br> tags for HTML rendering
                 const formattedHTML1 = formattedData1.replace(/\n/g, '<br>');
                 const formattedHTML2 = formattedData2.replace(/\n/g, '<br>');
+                const formattedHTML3 = formattedData3.replace(/\n/g, '<br>');
                 
                 preObject1.innerHTML = formattedHTML1; // Use innerHTML to render <br> tags
                 preObject2.innerHTML = formattedHTML2; // Use innerHTML to render <br> tags
+                preObject3.innerHTML = formattedHTML3; // Use innerHTML to render <br> tags
                 console.log("측정", n++);
 
                 chart.data.datasets[0].data.shift();
@@ -167,6 +191,20 @@
                 chart.update();
                 
                 console.log("==========", voltage);
+
+
+                /* 그래프 왼쪽부터 채워짐
+                voltageValues.push(voltage);
+                if (voltageValues.length > 15) {
+                    voltageValues.shift(); // 최근 15개만 유지
+                }
+
+                // 그래프 업데이트
+                chart.data.datasets[0].data = voltageValues;
+                chart.update();
+
+                console.log("측정", n++); */
+
             });
         </script>
         

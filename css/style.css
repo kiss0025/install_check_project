@@ -4,7 +4,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  background-color: #222;
+  background-color: black;
 }
 svg {
   display: block;
@@ -15,7 +15,7 @@ svg {
   position: absolute;
 }
 h1 {
-  width: 100%;
+  width: 90%;
   font-family: sans-serif;
   position: absolute;
   text-align: center;
@@ -49,23 +49,23 @@ h1 {
 
 .button-container {
   position: absolute;
-  width: 100%;
+  width: 90%;
   text-align: center;
   top: 85%;
 }
 
 .ok-ng-button {
   position: absolute;
-  width: 100%;
+  width: 90%;
   text-align: center;
   top: 1%;
 }
 
 button {
-  padding: 13px 28px;
-  width: 200px;
+  padding: 10px 23px;
+  width: 100px;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   border-radius: 12px;
   text-decoration: none;
   border: none;
@@ -89,13 +89,13 @@ button span {
   height: 50px;
   width: 100px;
   font-size: 20px;
-  background-color: #222;
+  background-color: black;
 }
 .ng-button {
   height: 50px;
   width: 100px;
   font-size: 20px;
-  background-color: #222;
+  background-color: black;
 }
 
 .green-button {
@@ -125,7 +125,7 @@ button span {
   border: 1px solid blue;
   background-color: rgba(0, 0, 0, 0);
   color: blue;
-  width: 150px;
+  width: 100px;
   padding: 5px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -153,9 +153,9 @@ path {
   }
   button {
     padding: 13px 28px;
-    width: 150px;
+    width: 130px;
     text-align: center;
-    font-size: 15px;
+    font-size: 12px;
     border-radius: 20px;
     text-decoration: none;
     border: none;
