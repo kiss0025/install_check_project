@@ -46,6 +46,9 @@
         padding: 2px;
         border: 1px solid #bcbcbc;
       }
+      .close-fullscreen {
+        display: none;
+      }
 
       /* desktop 규격 */
       @media screen and (min-width: 1024px) {
@@ -93,6 +96,26 @@
       <div id="jb-header">
         <div style="text-align: center; vertical-align: middle">
           <span style="color: yellow"> 사상통신분소 시험장치 v09.18c</span>
+        </div>
+        <div class="container">
+            <a
+              class="fullscreen"
+              href="#"
+              title="전체화면"
+              onclick="openFullScreenMode()"
+            >
+              전체화면
+            </a>
+            <a
+              class="close-fullscreen"
+              href="#"
+              title="창모드"
+              onclick="closeFullScreenMode()"
+            >
+              창모드
+            </a>
+          </h3>
+          h3
         </div>
         <div style="text-align: center; vertical-align: middle">
           <span
@@ -156,6 +179,41 @@
       setInterval(getTempData, 1000); // 1초마다 실행
     </script>
 
+    <script id="rendered-js">
+      var doc = document.documentElement;
+      // 전체화면 설정
+      function openFullScreenMode() {
+        if (doc.requestFullscreen) doc.requestFullscreen();
+        else if (doc.webkitRequestFullscreen)
+          // Chrome, Safari (webkit)
+          doc.webkitRequestFullscreen();
+        else if (doc.mozRequestFullScreen)
+          // Firefox
+          doc.mozRequestFullScreen();
+        else if (doc.msRequestFullscreen)
+          // IE or Edge
+          doc.msRequestFullscreen();
+        $(".fullscreen").hide();
+        $(".close-fullscreen").show();
+      }
+      // 전체화면 해제
+      function closeFullScreenMode() {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen)
+          // Chrome, Safari (webkit)
+          document.webkitExitFullscreen();
+        else if (document.mozCancelFullScreen)
+          // Firefox
+          document.mozCancelFullScreen();
+        else if (document.msExitFullscreen)
+          // IE or Edge
+          document.msExitFullscreen();
+        $(".fullscreen").show();
+        $(".close-fullscreen").hide();
+      }
+      //# sourceURL=pen.js
+    </script>
+
     <!-- <script>
       var Target = document.getElementById("clock");
       var Target_apm = document.getElementById("apm");
@@ -176,6 +234,6 @@
       }
       clock();
       setInterval(clock, 1000); // 1초마다 실행
-    </script> -->
+    </script>---->
   </body>
 </html>
