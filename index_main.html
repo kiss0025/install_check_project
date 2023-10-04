@@ -14,7 +14,12 @@
       body {
         background-color: orange;
       }
-
+      a {
+        font-size: 15px;
+      }
+      div {
+        border: 1px solid #fefefe;
+      }
       #jb-container {
         width: 100%;
         height: 100%;
@@ -23,7 +28,10 @@
         border: 1px solid #f90202;
       }
       #jb-header {
-        margin-bottom: 10px;
+        border: 1px solid #bcbcbc;
+        display: flex;
+      }
+      #jb-header-lower {
         border: 1px solid #bcbcbc;
         display: flex;
       }
@@ -94,17 +102,37 @@
   <body>
     <div id="jb-container">
       <div id="jb-header">
-        <div style="text-align: center; vertical-align: middle">
+        <div style="text-align: center; vertical-align: middle; width: 50%">
           <span style="color: yellow"> 편의시설 통화시험장치 v10.04e</span>
         </div>
-        <div>
+
+        <div style="text-align: center; vertical-align: middle; width: 14%">
+          <span
+            ><iframe
+              src="time.html"
+              scrolling="no"
+              frameborder="0"
+              width="100px"
+              height="35px"
+            >
+            </iframe
+          ></span>
+        </div>
+        <div style="text-align: center; vertical-align: middle; width: 22%">
+          <span id="headTempDisplay" style="color: white; font-size: 12px"
+            >작업실 온도 습도</span
+          >
+          <br />
+        </div>
+
+        <div style="text-align: right; vertical-align: middle; width: 15%">
           <a
             class="fullscreen"
             href="#"
             title="전체화면"
             onclick="openFullScreenMode()"
-          >
-            전체화면
+            ><img src="img\icons8-expand-fullscreen-53.png" width="30px" />
+            (전체)
           </a>
           <a
             class="close-fullscreen"
@@ -112,28 +140,27 @@
             title="창모드"
             onclick="closeFullScreenMode()"
           >
-            창모드
+            <img src="img\icons8-exit-fullscreen-53.png" width="30px" />
+            (창)
           </a>
         </div>
-        <div style="text-align: center; vertical-align: middle">
-          <span
-            ><iframe
-              src="time.html"
-              scrolling="no"
-              frameborder="0"
-              width="100%"
-              height="35px"
-            >
-            </iframe
-          ></span>
-        </div>
-        <div style="text-align: right; vertical-align: middle">
-          <span id="headTempDisplay" style="color: white; font-size: 12px"
-            >작업실 온도 습도</span
-          >
-          <br />
+      </div>
+
+      <div id="jb-header-lower">
+        <div
+          style="
+            text-align: right;
+            color: white;
+            vertical-align: middle;
+            font-size: 15px;
+            width: 100%;
+            padding-right: 30px;
+          "
+        >
+          매뉴얼1 / 매뉴얼2 / 작업표준1 / 작업표준2 / 구성도
         </div>
       </div>
+
       <div id="jb-content-left">
         <span style="color: white; font-size: 24px">전압 측정</span>
         <iframe

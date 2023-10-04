@@ -73,7 +73,7 @@ window.onload = function () {
                 만일, 비교하는 신호와 잡음의 단위가 Power 가 아니라 전압이라면
                 10 대신 20을 곱. 그 이유는 단위 저항에 대한 전력이 전압의 제곱으로
                 표현 되기 때문 */
-        var Noise_power = 0.001;
+        var Noise_power = 0.2;
         const snr = 10 * Math.log10(db / Noise_power);
         const formattedSNR = `SNR : ${snr.toFixed(2)} dB`;
         const formattedData3 = `${formattedSNR}`;
