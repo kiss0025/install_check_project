@@ -5,6 +5,8 @@ window.onload = function () {
   var mask = visualizer.getElementById("mask");
   var h = document.getElementsByTagName("h1")[0]; // 중간 db값
   var hSub = document.getElementsByTagName("h1")[1]; // db값 아래 사운드불량 표시
+  var preObject = document.getElementById("object"); //SNR
+
   var ngbtn = document.getElementById("btn-ng");
   var okbtn = document.getElementById("btn-ok");
   var AudioContext;
@@ -66,6 +68,18 @@ window.onload = function () {
         var db = 20 * (Math.log(rms) / Math.log(10));
         db = Math.max(db, 0); // sanity check
         h.innerHTML = Math.floor(db) + " dB";
+
+        /* SNR (dB) = 10 * Log (Signal_Power / Noise_Power) 
+                만일, 비교하는 신호와 잡음의 단위가 Power 가 아니라 전압이라면
+                10 대신 20을 곱. 그 이유는 단위 저항에 대한 전력이 전압의 제곱으로
+                표현 되기 때문 */
+        var Noise_power = 0.001;
+        const snr = 10 * Math.log10(db / Noise_power);
+        const formattedSNR = `SNR : ${snr.toFixed(2)} dB`;
+        const formattedData3 = `${formattedSNR}`;
+        const formattedHTML3 = formattedData3.replace(/\n/g, "<br>");
+
+        preObject.innerHTML = formattedHTML3;
 
         /*if (db >= loud_volume_threshold) {
                     seconds += 0.5;

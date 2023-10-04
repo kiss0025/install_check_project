@@ -54,6 +54,13 @@ h1 {
   top: 85%;
 }
 
+.button-container-main {
+  position: absolute;
+  left: 35%;
+  text-align: center;
+  bottom: 35%;
+}
+
 .ok-ng-button {
   position: absolute;
   width: 90%;

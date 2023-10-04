@@ -6,6 +6,34 @@
     <title>마이크</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <style>
+        html,
+        body {
+        width: 100%;
+        height: 50px;
+        padding: 0;
+        margin: 0;
+        background-color: black;
+        }
+        .sub-text{
+            position: fixed;
+            bottom: 50%; /* 페이지 아래에서 50% 위치에 배치 */
+            left: 0; /* 왼쪽 가장자리에 배치 (가운데 정렬을 위해) */
+            right: 0; /* 오른쪽 가장자리에 배치 (가운데 정렬을 위해) */
+            transform: translateY(50%); /* 수직 방향으로 50%만큼 이동하여 중앙에 정렬 */
+            text-align: center; /* 텍스트를 가운데 정렬 */
+            font-size: 14px;
+        }
+        .snrVal{
+            position: fixed;
+            top: 20%; /* 페이지 아래에서 50% 위치에 배치 */
+            left: 0; /* 왼쪽 가장자리에 배치 (가운데 정렬을 위해) */
+            right: 0; /* 오른쪽 가장자리에 배치 (가운데 정렬을 위해) */
+            transform: translateY(50%); /* 수직 방향으로 50%만큼 이동하여 중앙에 정렬 */
+            text-align: center; /* 텍스트를 가운데 정렬 */
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>    
     <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -29,6 +57,10 @@
     <h1 id="db_value" class="main-text">Please press button to start.</h1>
 
     <h1 class="sub-text"></h1>
+
+    <div class="snrVal">
+        <span id="object" class="snrData" style="color:orangered; font-size: 36px;">SNR Loading....</span>
+    </div>
 
     <!--<h1 class="top-text">편의시설 통화시험장치</h1>-->
 
