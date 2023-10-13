@@ -63,7 +63,7 @@ h1 {
 
 .ok-ng-button {
   position: absolute;
-  width: 90%;
+  width: 100%;
   text-align: center;
   top: 1%;
 }
@@ -94,15 +94,23 @@ button span {
 }
 .ok-button {
   height: 50px;
-  width: 100px;
+  width: 30%;
   font-size: 20px;
   background-color: black;
 }
 .ng-button {
   height: 50px;
-  width: 100px;
+  width: 30%;
   font-size: 20px;
   background-color: black;
+}
+
+.noise-button {
+  height: 50px;
+  width: 30%;
+  font-size: 12px;
+  padding: 0px;
+  background-color: #b00202;
 }
 
 .green-button {

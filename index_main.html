@@ -17,9 +17,6 @@
       a {
         font-size: 15px;
       }
-      div {
-        border: 1px solid #fefefe;
-      }
       #jb-container {
         width: 100%;
         height: 100%;
@@ -28,12 +25,12 @@
         border: 1px solid #f90202;
       }
       #jb-header {
-        border: 1px solid #bcbcbc;
         display: flex;
+        padding: 2px;
       }
       #jb-header-lower {
-        border: 1px solid #bcbcbc;
         display: flex;
+        padding-bottom: 5px;
       }
       #jb-content-left {
         width: 48%;
@@ -51,8 +48,6 @@
       }
       #jb-footer {
         clear: both;
-        padding: 2px;
-        border: 1px solid #bcbcbc;
       }
       .close-fullscreen {
         display: none;
@@ -102,37 +97,23 @@
   <body>
     <div id="jb-container">
       <div id="jb-header">
-        <div style="text-align: center; vertical-align: middle; width: 50%">
-          <span style="color: yellow"> 편의시설 통화시험장치 v10.04e</span>
+        <div style="text-align: center; vertical-align: middle; width: 65%">
+          <span style="color: yellow"> 편의시설 통화시험장치 v10.13f</span>
         </div>
-
-        <div style="text-align: center; vertical-align: middle; width: 14%">
-          <span
-            ><iframe
-              src="time.html"
-              scrolling="no"
-              frameborder="0"
-              width="100px"
-              height="35px"
-            >
-            </iframe
-          ></span>
-        </div>
-        <div style="text-align: center; vertical-align: middle; width: 22%">
+        <div style="text-align: center; vertical-align: middle; width: 25%">
           <span id="headTempDisplay" style="color: white; font-size: 12px"
             >작업실 온도 습도</span
           >
           <br />
         </div>
 
-        <div style="text-align: right; vertical-align: middle; width: 15%">
+        <div style="text-align: center; vertical-align: middle; width: 10%">
           <a
             class="fullscreen"
             href="#"
             title="전체화면"
             onclick="openFullScreenMode()"
             ><img src="img\icons8-expand-fullscreen-53.png" width="30px" />
-            (전체)
           </a>
           <a
             class="close-fullscreen"
@@ -141,7 +122,6 @@
             onclick="closeFullScreenMode()"
           >
             <img src="img\icons8-exit-fullscreen-53.png" width="30px" />
-            (창)
           </a>
         </div>
       </div>
@@ -162,29 +142,48 @@
       </div>
 
       <div id="jb-content-left">
-        <span style="color: white; font-size: 24px">전압 측정</span>
-        <iframe
-          id="iframe_left"
-          name="iframe_left"
-          src="mea_volt.html"
-          scrolling="no"
-          frameborder="0"
-          height="300px"
-        >
-        </iframe>
+        <div>
+          <span style="color: white; font-size: 24px">전압 측정</span>
+        </div>
+        <div>
+          <iframe
+            id="iframe_left"
+            name="iframe_left"
+            src="mea_volt.html"
+            scrolling="no"
+            frameborder="0"
+            width="100%"
+            height="300px"
+          >
+          </iframe>
+        </div>
       </div>
       <div id="jb-content-right">
-        <span style="color: white; font-size: 24px">음성 분석</span>
+        <div>
+          <span style="color: white; font-size: 24px">음성 분석</span>
+        </div>
         <iframe
           src="visualizer.html"
           scrolling="no"
           frameborder="0"
+          width="100%"
           height="300px"
         >
         </iframe>
       </div>
       <div id="jb-footer">
-        <p>Copyright</p>
+        <div style="text-align: center; vertical-align: middle">
+          <span
+            ><iframe
+              src="time.html"
+              scrolling="no"
+              frameborder="0"
+              width="100px"
+              height="20px"
+            >
+            </iframe
+          ></span>
+        </div>
       </div>
     </div>
 
