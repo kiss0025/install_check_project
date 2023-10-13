@@ -272,6 +272,7 @@ window.onload = function () {
         // Noise 측정 버튼 숨기기
         document.getElementById("btn_noise3sec").style.display = "none";
         noise_count = 1;
+        start = false;
 
         // Noise 측정 버튼 다시 표시
         //document.getElementById("btn_noise3sec").style.display = "inline-block";
