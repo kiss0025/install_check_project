@@ -3,19 +3,23 @@ window.onload = function () {
   var paths = document.getElementsByTagName("path");
   var visualizer = document.getElementById("visualizer");
   var mask = visualizer.getElementById("mask");
+  btn_noise3sec;
   var h = document.getElementsByTagName("h1")[0]; // 중간 db값
   var hSub = document.getElementsByTagName("h1")[1]; // db값 아래 사운드불량 표시
   var preObject = document.getElementById("object"); //SNR
 
   var ngbtn = document.getElementById("btn-ng");
   var okbtn = document.getElementById("btn-ok");
+  var noise_btn = document.getElementById("btn_noise3sec");
+
   var AudioContext;
   var audioContent;
   var start = false;
   var permission = false;
+  var noise_count = false;
   var path;
   var seconds = 0;
-  var noise_seconds = 0;
+  var noise_count = 0;
   var loud_volume_threshold = 70;
   var volume_A = 10; // 이하 불량치
   var volume_B = 30;
@@ -171,13 +175,6 @@ window.onload = function () {
                 만일, 비교하는 신호와 잡음의 단위가 Power 가 아니라 전압이라면
                 10 대신 20을 곱. 그 이유는 단위 저항에 대한 전력이 전압의 제곱으로
                 표현 되기 때문 */
-        var Noise_power = 0.2;
-        const snr = 10 * Math.log10(db / Noise_power);
-        const formattedSNR = `SNR : ${snr.toFixed(2)} dB`;
-        const formattedData3 = `${formattedSNR}`;
-        const formattedHTML3 = formattedData3.replace(/\n/g, "<br>");
-
-        preObject.innerHTML = formattedHTML3;
 
         /*if (db >= loud_volume_threshold) {
                     seconds += 0.5;
@@ -185,22 +182,6 @@ window.onload = function () {
                         hSub.innerHTML = "You’ve been in loud environment for<span> " + Math.floor(seconds) + " </span>seconds." ;
                     }
                 }*/
-        if (db <= volume_B) {
-          noise_seconds += 0.5;
-          if (noise_seconds >= 3) {
-            hSub.innerHTML =
-              "사운드 불량<span> " +
-              Math.floor(noise_seconds) +
-              " </span>seconds.";
-            ngbtn.innerHTML = "불량";
-            ngbtn.style.backgroundColor = "red";
-          }
-        } else {
-          noise_seconds = 0;
-          hSub.innerHTML = "";
-          ngbtn.innerHTML = "정상";
-          ngbtn.style.backgroundColor = "green";
-        }
       } else {
         h.innerHTML = "";
         hSub.innerHTML = "";
@@ -225,6 +206,11 @@ window.onload = function () {
       ngbtn.innerHTML = "";
       ngbtn.style.backgroundColor = "black";
       h.innerHTML = "시작하려면 Start 버튼을 누르세요";
+
+      // Noise 측정 버튼 표시
+      if ((noise_count = 0)) {
+        document.getElementById("btn_noise3sec").style.display = "inline-block";
+      }
     } else {
       if (!permission) {
         navigator.mediaDevices
@@ -238,6 +224,9 @@ window.onload = function () {
       start = true;
       this.innerHTML = "<span class='fa fa-stop'></span>Stop Listen";
       this.className = "red-button";
+
+      // Noise 측정 버튼 숨기기
+      document.getElementById("btn_noise3sec").style.display = "none";
     }
   };
 
@@ -249,20 +238,44 @@ window.onload = function () {
       this.className = "red-button";
       ngbtn.innerHTML = "";
       ngbtn.style.backgroundColor = "black";
-      //h.innerHTML = "시작하려면 Start 버튼을 누르세요";
     } else {
       if (!permission) {
         navigator.mediaDevices
           .getUserMedia({ audio: true })
           .then(noiseAllowed)
           .catch(soundNotAllowed);
-
         AudioContext = window.AudioContext || window.webkitAudioContext;
         audioContent = new AudioContext();
       }
       start = true;
-      this.innerHTML = "<span class='fa fa-stop'></span>Stop";
-      this.className = "red-button";
+      //this.innerHTML = "<span class='fa fa-stop'></span>Stop";
+      //this.className = "red-button";
+
+      // 여기에 카운트 다운 시작 함수 호출
+      startCountdown();
     }
   };
+
+  function startCountdown() {
+    let count = 3;
+    hSub.innerHTML = count + " sec";
+    noise_btn.innerHTML = count + " sec";
+    let countdownInterval = setInterval(function () {
+      count--;
+      hSub.innerHTML = count + " sec";
+      noise_btn.innerHTML = count + " sec";
+
+      if (count <= 0) {
+        clearInterval(countdownInterval);
+        hSub.innerHTML = "";
+
+        // Noise 측정 버튼 숨기기
+        document.getElementById("btn_noise3sec").style.display = "none";
+        noise_count = 1;
+
+        // Noise 측정 버튼 다시 표시
+        //document.getElementById("btn_noise3sec").style.display = "inline-block";
+      }
+    }, 1000);
+  }
 };
