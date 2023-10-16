@@ -17,12 +17,26 @@
       a {
         font-size: 15px;
       }
+      #btn-link {
+        border: 3px solid #bcbcbc;
+        border-radius: 10px;
+        margin: 5px;
+        background-color: black;
+        padding: 5px;
+      }
+      #btn-menu {
+        border: 0px solid #bcbcbc;
+        border-radius: 10px;
+        margin: 5px;
+        background-color: black;
+      }
+
+
       #jb-container {
         width: 100%;
         height: 100%;
         margin: auto;
         padding: 0px;
-        border: 1px solid #f90202;
       }
       #jb-header {
         display: flex;
@@ -37,14 +51,16 @@
         height: 100%;
         margin-bottom: 10px;
         float: left;
-        border: 1px solid #bcbcbc;
+        border: 3px solid #bcbcbc;
+        border-radius: 20px;
       }
       #jb-content-right {
         width: 48%;
         height: 100%;
         margin-bottom: 10px;
         float: right;
-        border: 1px solid #bcbcbc;
+        border: 3px solid #bcbcbc;
+        border-radius: 20px;
       }
       #jb-footer {
         clear: both;
@@ -88,8 +104,7 @@
           width: 100%;
         }
         #jb-footer {
-          font-size: 0.5rem;
-          clear: both;
+          width: 100%;
         }
       }
     </style>
@@ -97,23 +112,24 @@
   <body>
     <div id="jb-container">
       <div id="jb-header">
-        <div style="text-align: center; vertical-align: middle; width: 65%">
-          <span style="color: yellow"> 편의시설 통화시험장치 v10.13f</span>
+        <div style="text-align: center; vertical-align: middle; width: 65%;">
+          <span style="color: yellow"> 편의시설 통화시험장치 </span>
         </div>
-        <div style="text-align: center; vertical-align: middle; width: 25%">
-          <span id="headTempDisplay" style="color: white; font-size: 12px"
+        <div style="text-align: center; vertical-align: middle; width: 25%;">
+          <span id="headTempDisplay" style="color: white; font-size: 12px;"
             >작업실 온도 습도</span
           >
           <br />
         </div>
 
-        <div style="text-align: center; vertical-align: middle; width: 10%">
+        <div style="text-align: center; vertical-align: middle; width: 10%;">
           <a
             class="fullscreen"
             href="#"
             title="전체화면"
             onclick="openFullScreenMode()"
-            ><img src="img\icons8-expand-fullscreen-53.png" width="30px" />
+            ><button id="btn-menu"><img src="img\icons8-expand-fullscreen-53.png" width="30px" />
+              <span style="color: white; font-size: 12px;">Fullscreen</span></button>            
           </a>
           <a
             class="close-fullscreen"
@@ -135,15 +151,23 @@
             font-size: 15px;
             width: 100%;
             padding-right: 30px;
+            margin: 8px;
           "
         >
-          매뉴얼1 / 매뉴얼2 / 작업표준1 / 작업표준2 / 구성도
+          <a href="https://drive.google.com/file/d/1BfoihJAolO79o-nStsS6R1abMKGdO5RP/view?usp=sharing">
+            <button id="btn-link"><span style="color: white; font-size: 14px;">매뉴얼1</span></button></a>
+          <a href="https://drive.google.com/file/d/1BfoihJAolO79o-nStsS6R1abMKGdO5RP/view?usp=sharing">
+            <button id="btn-link"><span style="color: white; font-size: 14px;">매뉴얼2</span></button></a>
+          <a href="https://drive.google.com/file/d/1BfoihJAolO79o-nStsS6R1abMKGdO5RP/view?usp=sharing">
+            <button id="btn-link"><span style="color: white; font-size: 14px;">작업표준</span></button></a>
+          <a href="https://drive.google.com/file/d/1BfoihJAolO79o-nStsS6R1abMKGdO5RP/view?usp=sharing">
+            <button id="btn-link"><span style="color: white; font-size: 14px;">구성도</span></button></a>
         </div>
       </div>
 
       <div id="jb-content-left">
         <div>
-          <span style="color: white; font-size: 24px">전압 측정</span>
+          <span style="color: white; font-size: 24px; padding-left: 20px;">전압 측정</span>
         </div>
         <div>
           <iframe
@@ -160,7 +184,7 @@
       </div>
       <div id="jb-content-right">
         <div>
-          <span style="color: white; font-size: 24px">음성 분석</span>
+          <span style="color: white; font-size: 24px; padding-left: 20px;">음성 분석</span>
         </div>
         <iframe
           src="visualizer.html"
@@ -172,19 +196,27 @@
         </iframe>
       </div>
       <div id="jb-footer">
-        <div style="text-align: center; vertical-align: middle">
+        <div
+          style="
+            text-align: center;
+            color: white;
+            vertical-align: middle;
+            font-size: 15px;
+            width: 100%;
+            margin: 8px;
+          "
+        >
           <span
             ><iframe
               src="time.html"
               scrolling="no"
               frameborder="0"
               width="100px"
-              height="20px"
+              height="18px"
             >
             </iframe
-          ></span>
-        </div>
-      </div>
+          ></span>            
+          <span style="color: rgb(82, 252, 4); font-size: 15px">사상통신 v10.16</span>
     </div>
 
     <!-- <div style="text-align: center;">     

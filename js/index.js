@@ -176,6 +176,14 @@ window.onload = function () {
                 10 대신 20을 곱. 그 이유는 단위 저항에 대한 전력이 전압의 제곱으로
                 표현 되기 때문 */
 
+        var Noise_power = 0.2;
+        const snr = 10 * Math.log10(db / Noise_power);
+        const formattedSNR = `SNR : ${snr.toFixed(2)} dB`;
+        const formattedData3 = `${formattedSNR}`;
+        const formattedHTML3 = formattedData3.replace(/\n/g, "<br>");
+
+        preObject.innerHTML = formattedHTML3;
+
         /*if (db >= loud_volume_threshold) {
                     seconds += 0.5;
                     if (seconds >= 5) {
@@ -273,7 +281,7 @@ window.onload = function () {
         document.getElementById("btn_noise3sec").style.display = "none";
         noise_count = 1;
         start = false;
-
+        preObject.innerHTML = "Start 버튼을 누르세요";
         // Noise 측정 버튼 다시 표시
         //document.getElementById("btn_noise3sec").style.display = "inline-block";
       }
